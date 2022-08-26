@@ -12,10 +12,11 @@ const Profil = () => {
         <UpdateProfil />
       ) : (
         <div className="log-container">
-          <Log signin={false} signup={true} />
-          <div className="img-container">
-            <img src="./img/log.svg" alt="img-log" />
+        <div className="img-container">
+            <img src="./img/fond_home_network.svg" alt="img-log" />
+            <h2>Communiquer pour mieux se développer !</h2>
           </div>
+          <Log signin={false} signup={true} />
         </div>
       )}
     </div>

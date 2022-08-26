@@ -4,6 +4,25 @@
   border-radius: 20px;
   position: relative;
   background: $color-4;
+  box-shadow: -1px 2px 5px 1px 
+  rgba(0, 22, 44, 0.5),
+              -1px 2px 2px 
+  rgba(219, 218, 218, 0.4) inset; 
+
+  @media screen and(max-width: 590px) {
+    padding: 15px 20px;
+  }
+
+  .send{
+    background: $color-2;
+    color: $color-4;
+    font-family: "font-3", serif;
+
+    &:hover {
+      background: $color-1;
+      color: $color-2;
+    }
+  }
 
   i {
     font-size: 1.5rem;
@@ -15,12 +34,14 @@
     position: absolute;
     right: 42px;
     text-align: right;
+    color:$white;
 
-    @media screen and(max-width: 420px) {
-      right: 10px;
-    }
-    @media screen and(max-width: 380px) {
-      display: none;
+    @media screen and(max-width: 590px) {
+      position: absolute;
+      right: 20px;
+      text-align: right;
+      font-size: 0.85em;
+      color: rgb(253, 253, 253);
     }
 
     span {
@@ -29,14 +50,26 @@
   }
 
   .user-info {
-    margin-bottom: 10px;
+    margin: 10px 0px 10px 0px;
+
     img {
-      border-radius: 20px;
-      height: 60px;
-      width: 60px;
+      border-radius: 100px;
+      height: 100px;
+      width: 100px;
       box-shadow: 2px 2px 2px rgba(51, 51, 51, 0.16);
       object-fit: cover;
-    }
+      -webkit-border-radius: 100px;
+      -moz-border-radius: 100px;
+      -ms-border-radius: 100px;
+      -o-border-radius: 100px;
+
+      @media screen and(max-width: 590px) {
+        height: 80px;
+        width: 80px;
+      }
+
+
+}
     h3 {
       color: $black;
     }
@@ -56,7 +89,7 @@
       background: $white;
       border-radius: 20px 20px 6px 20px;
 
-      .card-left {
+      .card-top {
         text-align: left;
         img {
           @media screen and(max-width: 590px) {
@@ -64,7 +97,7 @@
           }
         }
       }
-      .card-right {
+      .card-bottom {
         @media screen and(max-width: 590px) {
           margin-left: 0;
         }
@@ -165,10 +198,11 @@
           border-radius: 20px;
           margin-right: 8px;
           background: $white;
+          color: #4e5166;
 
           &:hover {
-            color: $color-4;
-            background: $color-3;
+            color: $white;
+            background: $color-1;
           }
         }
         .send {

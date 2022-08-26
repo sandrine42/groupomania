@@ -28,13 +28,15 @@ const Card = ({ post }) => {
   }, [usersData]);
 
   return (
-    <li className="card-container" key={post._id}>
+    <div className="card-container" key={post._id}>
       {isLoading ? (
         <i className="fas fa-spinner fa-spin"></i>
       ) : (
         <>
-          <div className="card-left">
-            <img
+          <div className="card-top">
+
+          <div className="card-header">
+          <img
               src={
                 !isEmpty(usersData[0]) &&
                 usersData
@@ -46,9 +48,6 @@ const Card = ({ post }) => {
               }
               alt="poster-pic"
             />
-          </div>
-          <div className="card-right">
-            <div className="card-header">
               <div className="pseudo">
                 <h3>
                   {!isEmpty(usersData[0]) &&
@@ -64,7 +63,11 @@ const Card = ({ post }) => {
                 )}
               </div>
               <span>{dateParser(post.createdAt)}</span>
-            </div>
+          </div>
+          </div>
+            <div className="separator"></div>
+          <div className="card-bottom">
+
             {isUpdated === false && <p>{post.message}</p>}
             {isUpdated && (
               <div className="update-post">
@@ -101,6 +104,7 @@ const Card = ({ post }) => {
                 <DeleteCard id={post._id} />
               </div>
             )}
+            <div className="separator"></div>
             <div className="card-footer">
               <div className="comment-icon">
                 <img
@@ -111,13 +115,12 @@ const Card = ({ post }) => {
                 <span>{post.comments.length}</span>
               </div>
               <LikeButton post={post} />
-              <img src="./img/icons/share.svg" alt="share" />
             </div>
             {showComments && <CardComments post={post} />}
           </div>
         </>
       )}
-    </li>
+    </div>
   );
 };
 

@@ -32,7 +32,7 @@ export const uploadPicture = (data, id) => {
             .get(`${process.env.REACT_APP_API_URL}api/user/${id}`)
             .then((res) => {
               dispatch({ type: UPLOAD_PICTURE, payload: res.data.picture });
-              console.log(res.data.picture)
+
             });
         }
       })

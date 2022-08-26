@@ -23,8 +23,8 @@ const Trends = () => {
 
   return (
     <div className="trending-container">
-      <h4>Trending</h4>
-      <NavLink exact to="/trending">
+      <h4>Les tendances</h4>
+      <NavLink exact ="true" to="/trending">
         <ul>
           {trendList.length &&
             trendList.map((post) => {

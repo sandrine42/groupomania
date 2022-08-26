@@ -1,4 +1,3 @@
-const postModel = require("../models/post.model");
 const PostModel = require("../models/post.model");
 const UserModel = require("../models/user.model");
 const { uploadErrors } = require("../utils/errors.utils");
@@ -41,7 +40,7 @@ module.exports.createPost = async (req, res) => {
     );
   }
 
-  const newPost = new postModel({
+  const newPost = new PostModel({
     posterId: req.body.posterId,
     message: req.body.message,
     picture: req.file !== null ? "./uploads/posts/" + fileName : "",
@@ -89,56 +88,33 @@ module.exports.deletePost = (req, res) => {
 
 module.exports.likePost = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknown : " + req.params.id);
+    return res.status(400).json({ message: "ID unknown : " + req.params.id});
 
   try {
-    await PostModel.findByIdAndUpdate(
-      req.params.id,
-      {
-        $addToSet: { likers: req.body.id },
-      },
-      { new: true })
-      .then((data) => res.send(data))
-      .catch((err) => res.status(500).send({ message: err }));
-
-    await UserModel.findByIdAndUpdate(
-      req.body.id,
-      {
-        $addToSet: { likes: req.params.id },
-      },
-      { new: true })
-            .then((data) => res.send(data))
-            .catch((err) => res.status(500).send({ message: err }));
-    } catch (err) {
-        return res.status(400).send(err);
-    }
+    let critere = { likers: req.body.id };
+    await PostModel.findByIdAndUpdate(req.params.id, {$addToSet: critere}, { new: true })
+      .then(data => UserModel.findByIdAndUpdate(req.body.id,{$addToSet: critere}, { new: true })
+        .then(data => res.send(data))
+        .catch(err => res.status(500).json({ message: err }))
+      ).catch(err => res.status(500).json({ message: err }));
+  } catch (err) {
+    return res.status(400).json(err);
+  }
 };
-
 module.exports.unlikePost = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknown : " + req.params.id);
+    return res.status(400).json({ message: "ID unknown : " + req.params.id});
 
   try {
-    await PostModel.findByIdAndUpdate(
-      req.params.id,
-      {
-        $pull: { likers: req.body.id },
-      },
-      { new: true })
-            .then((data) => res.send(data))
-            .catch((err) => res.status(500).send({ message: err }));
-
-    await UserModel.findByIdAndUpdate(
-      req.body.id,
-      {
-        $pull: { likes: req.params.id },
-      },
-      { new: true })
-            .then((data) => res.send(data))
-            .catch((err) => res.status(500).send({ message: err }));
-    } catch (err) {
-        return res.status(400).send(err);
-    }
+    let critere = { likers: req.body.id };
+    await PostModel.findByIdAndUpdate(req.params.id, {$pull: critere}, { new: true })
+      .then(data => UserModel.findByIdAndUpdate(req.body.id,{$pull: critere}, { new: true })
+        .then(data => res.send(data))
+        .catch(err => res.status(500).json({ message: err }))
+      ).catch(err => res.status(500).json({ message: err }));
+  } catch (err) {
+    return res.status(400).json(err);
+  }
 };
 
 module.exports.commentPost = (req, res) => {

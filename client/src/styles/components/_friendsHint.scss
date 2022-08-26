@@ -1,8 +1,12 @@
 .get-friends-container {
-  width: 356px;
-  background: linear-gradient(145deg, $color-2 30%, #ffe1d9 100%);
+  width: 99%;
+  background-color: $color-2;
   border-radius: 20px;
   padding: 20px 20px 10px;
+  box-shadow: -1px 2px 5px 1px 
+        rgba(0, 22, 44, 0.5),
+                    -1px 2px 20px 
+        rgba(219, 218, 218, 0.4) inset; 
 
   h4 {
     font-size: 1.4rem;
@@ -30,7 +34,7 @@
       img {
         height: 46px;
         width: 46px;
-        border-radius: 12px;
+        border-radius: 40px;
         object-fit: cover;
         box-shadow: 0 0 2px rgba(51, 51, 51, 0.377);
       }
@@ -43,7 +47,8 @@
         text-align: right;
 
         button {
-          background: $color-1;
+          background: $white;
+          border: solid 2px $color-4;
           color: $color-4;
           padding: 10px 24px 8px;
           transition: 0.2s;
@@ -51,7 +56,8 @@
           font-size: 0.9rem;
 
           &:hover {
-            background: $color-4;
+            background: $white;
+            border: solid 2px $color-1;
             color: $color-1;
           }
         }

@@ -1,6 +1,6 @@
-.connection-from {
+.connection-form {
   border: 2px solid $color-1;
-  width: 400px;
+  width: 100%;
   margin: 35px auto 0;
   padding: 20px 0;
   user-select: none;
@@ -34,10 +34,26 @@
     background: $color-1;
   }
   form {
-    width: 400px;
+    width: 100%;
     margin: 10px auto 0;
     padding: 20px;
 
   }
+
+  @media screen and(max-width: 990px) {
+    display: grid;
+    margin: 100px 20px 50px;
+
+  }
+
+  @media screen and(max-width: 590px) {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: auto;
+    justify-content: center;
+    width: 100%;
+  }
+
+
 }
 

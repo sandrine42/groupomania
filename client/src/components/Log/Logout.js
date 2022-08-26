@@ -22,7 +22,7 @@ const Logout = () => {
   };
 
   return (
-    <li onClick={logout}>
+    <li id="picto_logout" onClick={logout}>
       <img src="./img/icons/logout.svg" alt="logout" />
     </li>
   );

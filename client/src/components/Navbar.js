@@ -12,31 +12,52 @@ const Navbar = () => {
     <nav>
       <div className="nav-container">
         <div className="logo">
-          <NavLink exact to="/">
+          <NavLink exact="true" to="/">
             <div className="logo">
-              <img src="./img/icon.png" alt="icon" />
-              <h3>Raccoont</h3>
+              <img src="./img/icon-left-font.svg" alt="logo groupomania" />
             </div>
           </NavLink>
         </div>
         {uid ? (
           <ul>
-            <li></li>
             <li className="welcome">
-              <NavLink exact to="/profil">
+              <NavLink exact="true" to="/profil">
+              <img id="img_nav_profil" src={userData.picture} alt="user-pic" />
                 <h5>Bienvenue {userData.pseudo}</h5>
+                
               </NavLink>
+            </li>
+            <li id="left-nav-container">
+
+<div className="icons">
+        <div className="icons-bis">
+          <NavLink to='/' exact ="true" active="true" className="active-left-nav">
+            <img src="./img/icons/home.svg" alt="home"/>
+          </NavLink>
+          <br/>
+          <NavLink to='/trending' exact ="true" active="true" className="active-left-nav">
+            <img src="./img/icons/rocket.svg" alt="home"/>
+          </NavLink>
+          <br/>
+          <NavLink to='/profil' exact ="true" active="true" className="active-left-nav">
+            <img src="./img/icons/user.svg" alt="home"/>
+          </NavLink>
+        </div>
+      </div>
+
             </li>
             <Logout />
           </ul>
         ) : (
           <ul>
-            <li></li>
-            <li>
-              <NavLink exact to="/profil">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li id="picto_login">
+              <NavLink exact="true" to="/profil">
                 <img src="./img/icons/login.svg" alt="login"/>
               </NavLink>
-            </li>
+          </li>
           </ul>
         )}
       </div>

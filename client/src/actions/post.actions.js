@@ -147,5 +147,6 @@ export const deleteComment = (postId, commentId) => {
 export const getTrends = (sortedArray) => {
   return (dispatch) => {
     dispatch({ type: GET_TRENDS, payload: sortedArray });
+    console.log(sortedArray)
   };
 };

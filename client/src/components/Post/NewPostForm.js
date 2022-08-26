@@ -44,6 +44,8 @@ const NewPostForm = () => {
   };
 
 
+
+
   useEffect(() => {
     if (!isEmpty(userData)) setIsLoading(false);
 
@@ -83,7 +85,7 @@ const NewPostForm = () => {
               {userData.followers && userData.followers.length > 1 ? "s" : null}
             </p>
           </div>
-          <NavLink exact to="/profil">
+          <NavLink exact ="true"to="/profil">
             <div className="user-info">
               <img src={userData.picture} alt="user-img" />
             </div>
@@ -97,11 +99,11 @@ const NewPostForm = () => {
               value={message}
             />
             {message || postPicture || video.length > 20 ? (
-              <li className="card-container">
-                <div className="card-left">
+              <div className="card-container">
+                <div className="card-top">
                   <img src={userData.picture} alt="user-pic" />
                 </div>
-                <div className="card-right">
+                <div className="card-bottom">
                   <div className="card-header">
                     <div className="pseudo">
                       <h3>{userData.pseudo}</h3>
@@ -122,7 +124,7 @@ const NewPostForm = () => {
                     )}
                   </div>
                 </div>
-              </li>
+              </div>
             ) : null}
             <div className="footer-form">
               <div className="icon">

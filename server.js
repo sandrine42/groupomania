@@ -56,7 +56,7 @@ const normalizePort = val => {
 };
 
 // Si aucun port n'est fourni on écoutera sur le port 5000
-const port = normalizePort(process.env.PORT || 'PORT');
+const port = normalizePort(process.env.PORT || 5000);
 app.set('port', port);
 
 //Gestion des erreurs

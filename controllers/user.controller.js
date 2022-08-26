@@ -53,27 +53,19 @@ module.exports.follow = async (req, res) => {
     !ObjectID.isValid(req.params.id) ||
     !ObjectID.isValid(req.body.idToFollow)
   )
-    return res.status(400).send("ID unknown : " + req.params.id);
+  return res.status(400).json({ message: "ID unknown : " + req.params.id});
 
-  try {
-    // add to the follower list
-    await UserModel.findByIdAndUpdate(
-      req.params.id,
-      { $addToSet: { following: req.body.idToFollow } },
-      { new: true, upsert: true }
-        .then((data) => res.send(data))
-        .catch((err) => res.status(500).send({ message: err }))),
-
-      // add to following list
-      await UserModel.findByIdAndUpdate(
-        req.body.idToFollow,
-        { $addToSet: { followers: req.params.id } },
-        { new: true, upsert: true }
-          .then((data) => res.send(data))
-          .catch((err) => res.status(500).send({ message: err })))
-  } catch (err) {
-    return res.status(500).json({ message: err });
-  }
+try {
+  let critere = { following: req.body.idToFollow };
+  let critereAdd = {followers: req.params.id }
+  await UserModel.findByIdAndUpdate(req.params.id, {$addToSet: critere}, { new: true, upsert: true  })
+    .then(data => UserModel.findByIdAndUpdate(req.body.idToFollow,{$addToSet: critereAdd}, { new: true, upsert: true  })
+      .then(data => res.send(data))
+      .catch(err => res.status(500).json({ message: err }))
+    ).catch(err => res.status(500).json({ message: err }));
+} catch (err) {
+  return res.status(400).json(err);
+}
 };
 
 module.exports.unfollow = async (req, res) => {
@@ -81,25 +73,18 @@ module.exports.unfollow = async (req, res) => {
     !ObjectID.isValid(req.params.id) ||
     !ObjectID.isValid(req.body.idToUnfollow)
   )
-    return res.status(400).send("ID unknown : " + req.params.id);
+  return res.status(400).json({ message: "ID unknown : " + req.params.id});
 
-  try {
-    await userModel.findByIdAndUpdate(
-      req.params.id,
-      { $pull: { following: req.body.idToUnfollow } },
-      { new: true, upsert: true }
-        .then((data) => res.send(data))
-        .catch((err) => res.status(500).send({ message: err }))),
-
-      // Retirer de la liste des followers
-      await userModel.findByIdAndUpdate(
-        req.body.idToUnfollow,
-        { $pull: { followers: req.params.id } },
-        { new: true, upsert: true }
-          .then((data) => res.send(data))
-          .catch((err) => res.status(500).send({ message: err })))
-  } catch (err) {
-    return res.status(500).json({ message: err });
-  }
+try {
+  let critere = { following: req.body.idToUnfollow  };
+  let critereAdd = {followers: req.params.id }
+  await UserModel.findByIdAndUpdate(req.params.id, {$pull: critere}, { new: true, upsert: true  })
+    .then(data => UserModel.findByIdAndUpdate(req.body.idToUnfollow,{$pull: critereAdd}, { new: true, upsert: true  })
+      .then(data => res.send(data))
+      .catch(err => res.status(500).json({ message: err }))
+    ).catch(err => res.status(500).json({ message: err }));
+} catch (err) {
+  return res.status(400).json(err);
 }
+};
 
