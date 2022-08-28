@@ -1,5 +1,11 @@
+//Importation de MONGOOSE
 const mongoose = require('mongoose');
 
+
+//Création d'un schéma de données pour la base de données MongoDB
+//qui contient les champs souhaités pour le model post
+//indique leur type ainsi que leur caractère (obligatoire ou non)
+//utilise la méthode Schema mise à disposition par Mongoose
 const PostSchema = new mongoose.Schema(
   {
     posterId: {
@@ -38,4 +44,7 @@ const PostSchema = new mongoose.Schema(
   }
 );
 
+//Exportation de ce schéma en tant que modèle Mongoose appelé « post »,
+//le rendant par là même disponible pour notre application Express
+//à l'aide de la méthode model qui le transforme en un modèle utilisable.
 module.exports = mongoose.model('post', PostSchema);

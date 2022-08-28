@@ -58,13 +58,12 @@ module.exports.createPost = async (req, res) => {
 };
 
 module.exports.updatePost = (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
+  if (!ObjectID.isValid(req.params.id) && params_id == UserModel._id || UserModel.isAdmin)
     return res.status(400).send("ID unknown : " + req.params.id);
 
   const updatedRecord = {
     message: req.body.message,
   };
-
   PostModel.findByIdAndUpdate(
     req.params.id,
     { $set: updatedRecord },
@@ -77,10 +76,10 @@ module.exports.updatePost = (req, res) => {
 };
 
 module.exports.deletePost = (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
+  if (!ObjectID.isValid(req.params.id) && params_id == UserModel._id || UserModel.isAdmin)
     return res.status(400).send("ID unknown : " + req.params.id);
 
-  PostModel.findByIdAndRemove(req.params.id, (err, docs) => {
+  PostModel.findByIdAndRemove( req.params.id, (err, docs) => {
     if (!err) res.send(docs);
     else console.log("Delete error : " + err);
   });
@@ -120,7 +119,6 @@ module.exports.unlikePost = async (req, res) => {
 module.exports.commentPost = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
-
   try {
     return PostModel.findByIdAndUpdate(
       req.params.id,
@@ -143,9 +141,8 @@ module.exports.commentPost = (req, res) => {
 };
 
 module.exports.editCommentPost = (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
+  if (!ObjectID.isValid(req.params.id)&& commenter_id == UserModel._id || UserModel.isAdmin)
     return res.status(400).send("ID unknown : " + req.params.id);
-
   try {
     return PostModel.findById(req.params.id, (err, docs) => {
       const theComment = docs.comments.find((comment) =>
@@ -166,9 +163,8 @@ module.exports.editCommentPost = (req, res) => {
 };
 
 module.exports.deleteCommentPost = (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
+  if (!ObjectID.isValid(req.params.id) && commenter_id == UserModel._id || UserModel.isAdmin)
     return res.status(400).send("ID unknown : " + req.params.id);
-
   try {
     return PostModel.findByIdAndUpdate(
       req.params.id,

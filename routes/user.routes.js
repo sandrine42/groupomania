@@ -1,9 +1,17 @@
+//Création du routeur avec la méthode mise à disposition par Express (express.Router)
 const router = require("express").Router();
+
+//importation du controlleur d'authentification
 const authController = require("../controllers/auth.controller");
+//importation du controlleur utilisateur qui associe les fonctions aux différentes routes
 const userController = require("../controllers/user.controller");
+//importation du controlleur upload du profil utilisateur
 const uploadController = require('../controllers/upload.controller');
+// Importation du middleware MULTER pour la gestion des images
 const multer = require("multer");
 const upload = multer();
+
+// Création des différentes ROUTES utilisateur de l'API
 
 // auth
 router.post("/register", authController.signUp);
@@ -21,5 +29,6 @@ router.patch("/unfollow/:id", userController.unfollow);
 // upload
 router.post("/upload", upload.single("file"), uploadController.uploadProfil);
 
+// Exportation du ROUTER vers app.js
 module.exports = router;
 

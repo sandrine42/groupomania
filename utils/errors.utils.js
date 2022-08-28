@@ -1,3 +1,5 @@
+//Traitement des message erreurs signUp, signIn et upload des images
+
 module.exports.signUpErrors = (err) => {
   let errors = { pseudo: "", email: "", password: "" };
 

@@ -1,6 +1,14 @@
+// Importation du package "jsonwebtoken" qui permet la création et la verification des TOKEN
+//Les tokens d'authentification permettent aux utilisateurs de se connecter une seule fois
+//à leur compte. Au moment de se connecter, ils recevront leur token et le renverront
+//automatiquement à chaque requête par la suite.
+//Ceci permettra au back-end de vérifier que la requête est authentifiée.
 const jwt = require("jsonwebtoken");
+//Importation du model utilisateur
 const UserModel = require("../models/user.model");
 
+
+ // Récupère le token de l'utilisateur, vérifie si il existe et le décode
 module.exports.checkUser = (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
