@@ -24,6 +24,10 @@ require('dotenv').config({path: './config/.env'});
 // Importation de la configuration de la base de donnée MongoDB
 require('./config/db');
 
+//Importation de HELMET
+//module qui aide à sécuriser les en-têtes HTTP renvoyés par les applications Express. 
+const helmet = require('helmet');
+
 // Importation du middleware d'authentification des utilisateurs
 const {checkUser, requireAuth} = require('./middleware/auth.middleware');
 
@@ -64,6 +68,9 @@ app.get('/jwtid', requireAuth, (req, res) => {
 // Activation des routes
 app.use('/api/user', userRoutes);
 app.use('/api/post', postRoutes);
+
+// Protection contre injection sql, xss
+app.use(helmet());
 
 // Renvoie d'un port valide
 // NormalizePort renvoie un port valide,
