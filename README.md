@@ -2,7 +2,7 @@
 -----------------  
 ## groupomania
 <p align="center">
-<img width="380" height="173" ![GROUPOMANIA] src = "https://github.com/sandrine42/groupomania/client/public/img/logo_piiquante.png" >
+<img width="380" height="173" ![groupomania] src = "https://github.com/sandrine42/Piiquante/blob/main/img/logo_piiquante.png" >
 </p>
 
 Le projet consiste à construire un réseau social interne pour les employés de Groupomania
