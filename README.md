@@ -2,7 +2,7 @@
 -----------------  
 ## groupomania
 <p align="center">
-<img width="400" height="380" ![groupomania] src = "https://github.com/sandrine42/groupomania/blob/main/image/icon-left-font-monochrome-black.png" >
+<img width="500" height="200" ![groupomania] src = "https://github.com/sandrine42/groupomania/blob/main/image/icon-left-font-monochrome-black.svg" >
 </p>
 Le projet consiste à construire un réseau social interne pour les employés de Groupomania
 Le but de cet outil est de faciliter les interactions entre collègues.
