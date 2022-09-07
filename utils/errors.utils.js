@@ -1,5 +1,6 @@
 //Traitement des message erreurs signUp, signIn et upload des images
 
+//Exportation de la fonction signUpErrors
 module.exports.signUpErrors = (err) => {
   let errors = { pseudo: "", email: "", password: "" };
 
@@ -20,6 +21,7 @@ module.exports.signUpErrors = (err) => {
   return errors;
 };
 
+//Exportation de la fonction signInErrors
 module.exports.signInErrors = (err) => {
   let errors = { email: '', password: ''}
 
@@ -32,6 +34,7 @@ module.exports.signInErrors = (err) => {
   return errors;
 }
 
+//Exportation de la fonction uploadErrors
 module.exports.uploadErrors = (err) => {
   let errors = { format: '', maxSize: ""};
 

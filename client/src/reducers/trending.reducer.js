@@ -1,3 +1,4 @@
+//Importation de toutes les actions concernant les tendances posts
 import {
   GET_TRENDS,
   DELETE_COMMENT,
@@ -6,13 +7,14 @@ import {
   LIKE_POST,
   UNLIKE_POST,
   UPDATE_POST,
-
-
 } from "../actions/post.actions";
 
+//State de base vide
 const initialState = {};
 
-
+//Exportation de la fonction trendingReducer qui incrément le initialState avec toutes les données des tendances
+//de posts et des actions que l'utilisateur a fait qui sur celles-ci
+//qui seront accessibles par tous les components de l'appli
 export default function trendingReducer(state = initialState, action) {
   switch (action.type) {
     case GET_TRENDS:

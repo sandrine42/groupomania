@@ -1,3 +1,5 @@
+//Fonction qui permet de traiter la date envoyer par createdAt (timestamp de mongoDB)
+
 export const dateParser = (num) => {
   let options = {
     hour: "2-digit",
@@ -30,6 +32,8 @@ export const timestampParser = (num) => {
   return date.toString();
 }
 
+// IsEmpty, fonction pour pour déterminer si une value vide ou pas en fonction des 4 conditions
+//ci-dessous
 export const isEmpty = (value) => {
   return (
     value === undefined ||

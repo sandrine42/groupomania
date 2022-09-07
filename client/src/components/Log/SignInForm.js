@@ -1,4 +1,12 @@
+//Pour se connecter
+
+//Imports
+
+//Importation de React (bibliothèque de construction d'interfaces utilisateur)
 import React, { useState } from "react";
+
+//Importation de axios
+//Axios est une librairie cliente HTTP qui vous permet de faire des requêtes à une route donnée
 import axios from "axios";
 
 const SignInForm = () => {
@@ -6,7 +14,9 @@ const SignInForm = () => {
   const [password, setPassword] = useState("");
 
   const handleLogin = (e) => {
+    //Pour éviter que la page se recharge
     e.preventDefault();
+    
     const emailError = document.querySelector(".email.error");
     const passwordError = document.querySelector(".password.error");
 
@@ -33,6 +43,7 @@ const SignInForm = () => {
       });
   };
 
+  //Rendu (affichage)
   return (
     <form action="" onSubmit={handleLogin} id="sign-up-form">
       <label htmlFor="email">Email</label>
@@ -62,4 +73,5 @@ const SignInForm = () => {
   );
 };
 
+//Exportation de SignInForm
 export default SignInForm;

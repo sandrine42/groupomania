@@ -73,10 +73,10 @@ userSchema.pre("save", async function(next) {
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
+
 //Permet de créer une fonction directement liée au schéma,
 //mais appelée à partir du même fichier à l'aide du modèle,
 //pour vérifier si les données existant déjà
-
 userSchema.statics.login = async function(email, password) {
   const user = await this.findOne({ email });
   if (user) {
@@ -92,6 +92,7 @@ userSchema.statics.login = async function(email, password) {
 //Exportation de ce schéma en tant que modèle Mongoose appelé « User »,
 //le rendant par là même disponible pour notre application Express
 //à l'aide de la méthode model qui le transforme en un modèle utilisable.
-
 const UserModel = mongoose.model("user", userSchema);
+
+//Exportation de la fonction UserModel
 module.exports = UserModel;

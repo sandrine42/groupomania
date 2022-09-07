@@ -1,8 +1,26 @@
+//Commentaires des posts
+
+//Imports
+
+//Importation de React (bibliothèque de construction d'interfaces utilisateur)
 import React, { useState } from "react";
+
+//Importation de useSelector pour récupérer une valeur du store Redux.
+//Importation de useDispatch pour récupérer la fonction dispatch au sein de notre composant
+//afin de pouvoir dispatch des actions Redux.
 import { useDispatch, useSelector } from "react-redux";
+
+//Importation de addComment et getPosts (action)
 import { addComment, getPosts } from "../../actions/post.actions";
+
+//Importation de FollowHandler
 import FollowHandler from "../Profil/FollowHandler";
+
+//Importation de IsEmpty, fonction pour pour déterminer si une value est vide ou pas
+//Importation de dateParser (traitement de la date d'inscription)
 import { isEmpty, timestampParser } from "../Utils";
+
+//Importation de EditDeleteComment
 import EditDeleteComment from "./EditDeleteComment";
 
 const CardComments = ({ post }) => {
@@ -21,6 +39,9 @@ const CardComments = ({ post }) => {
     }
   };
 
+
+  //Rendu (affichage)
+  //Style conditionnel pour changer la couleur de celui qui commente (? :)
   return (
     <div className="comments-container">
       {post.comments.map((comment) => {
@@ -83,4 +104,5 @@ const CardComments = ({ post }) => {
   );
 };
 
+//Exportation de CardComments
 export default CardComments;

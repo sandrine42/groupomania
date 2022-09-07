@@ -1,10 +1,21 @@
+//Effacer un post
+
+//Imports
+
+//Importation de React (bibliothèque de construction d'interfaces utilisateur)
 import React from "react";
+
+//Importation de useDispatch pour récupérer la fonction dispatch au sein de notre composant
+//afin de pouvoir dispatch des actions Redux.
 import { useDispatch } from "react-redux";
+
+//Importation de deletePost (action)
 import { deletePost } from "../../actions/post.actions";
 
 const DeleteCard = (props) => {
   const dispatch = useDispatch();
 
+  //Fonction deleteQuote (action)
   const deleteQuote = () => dispatch(deletePost(props.id));
 
   return (
@@ -20,4 +31,5 @@ const DeleteCard = (props) => {
   );
 };
 
+//Exportation de DeleteCard
 export default DeleteCard;

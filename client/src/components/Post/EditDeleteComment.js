@@ -1,6 +1,22 @@
+//Effacer commentaire
+
+//Imports
+
+//Importation de React (bibliothèque de construction d'interfaces utilisateur)
 import React, { useContext, useEffect, useState } from "react";
+
+//Importation de useSelector pour récupérer une valeur du store Redux.
+//Importation de useDispatch pour récupérer la fonction dispatch au sein de notre composant
+//afin de pouvoir dispatch des actions Redux.
 import { useDispatch, useSelector } from "react-redux";
+
+//Importation de deleteComment et editComment (action)
 import { deleteComment, editComment } from "../../actions/post.actions";
+
+//Importation de UidContext
+//Le Contexte offre un moyen de faire passer des données à travers l’arborescence du composant
+//sans avoir à passer manuellement les props à chaque niveau
+//permet de staocker l'Id de l'utilisateur
 import { UidContext } from "../AppContext";
 
 const EditDeleteComment = ({ comment, postId }) => {

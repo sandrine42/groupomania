@@ -1,6 +1,8 @@
+//Importation de axios
+//Axios est une librairie cliente HTTP qui vous permet de faire des requêtes à une route donnée
 import axios from "axios";
 
-// posts
+//Exportation des actions (sorte de bibliothèque de toutes les actions) des posts
 export const GET_POSTS = "GET_POSTS";
 export const GET_ALL_POSTS = "GET_ALL_POSTS";
 export const ADD_POST = "ADD_POST";
@@ -9,17 +11,21 @@ export const UNLIKE_POST = "UNLIKE_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const DELETE_POST = "DELETE_POST";
 
-// comments
+//Exportation des actions (sorte de bibliothèque de toutes les actions) des commentaires
 export const ADD_COMMENT = "ADD_COMMENT";
 export const EDIT_COMMENT = "EDIT_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
-// trends
+//Exportation de l'action GET_TRENDS des tendances
 export const GET_TRENDS = "GET_TRENDS";
 
-// errors
+//Exportation de l'action GET_POST_ERRORS pour le traitement des erreurs
 export const GET_POST_ERRORS = "GET_POST_ERRORS";
 
+//Posts
+
+//Action qui permet de récupérer les données de tous les posts et de les envoyer au reducer
+//en faisant un tri dans un tableau pour l'affichage "dynamique des posts"
 export const getPosts = (num) => {
   return (dispatch) => {
     return axios
@@ -33,6 +39,7 @@ export const getPosts = (num) => {
   };
 };
 
+//Action qui permet de récupérer les données d'un "nouveau post" et de les envoyer au reducer
 export const addPost = (data) => {
   return (dispatch) => {
     return axios
@@ -47,6 +54,7 @@ export const addPost = (data) => {
   };
 };
 
+//Action qui permet de récupérer les données de like d'un post et de les envoyer au reducer
 export const likePost = (postId, userId) => {
   return (dispatch) => {
     return axios({
@@ -61,6 +69,7 @@ export const likePost = (postId, userId) => {
   };
 };
 
+//Action qui permet de récupérer les données de unlikePost d'un post et de les envoyer au reducer
 export const unlikePost = (postId, userId) => {
   return (dispatch) => {
     return axios({
@@ -75,6 +84,7 @@ export const unlikePost = (postId, userId) => {
   };
 };
 
+//Action qui permet de récupérer les données de l'uptdate d'un post et de les envoyer au reducer
 export const updatePost = (postId, message) => {
   return (dispatch) => {
     return axios({
@@ -89,6 +99,7 @@ export const updatePost = (postId, message) => {
   };
 };
 
+//Action qui permet de récupérer les données de delete d'un post et de les envoyer au reducer
 export const deletePost = (postId) => {
   return (dispatch) => {
     return axios({
@@ -102,6 +113,9 @@ export const deletePost = (postId) => {
   };
 };
 
+//Commentaires
+
+//Action qui permet de récupérer les données d'un "nouveau commentaire" et de les envoyer au reducer
 export const addComment = (postId, commenterId, text, commenterPseudo) => {
   return (dispatch) => {
     return axios({
@@ -116,6 +130,7 @@ export const addComment = (postId, commenterId, text, commenterPseudo) => {
   };
 };
 
+//Action qui permet de récupérer les données de modification d'un commentaire et de les envoyer au reducer
 export const editComment = (postId, commentId, text) => {
   return (dispatch) => {
     return axios({
@@ -130,6 +145,7 @@ export const editComment = (postId, commentId, text) => {
   };
 };
 
+//Action qui permet de récupérer les données de delete d'un commentaire et de les envoyer au reducer
 export const deleteComment = (postId, commentId) => {
   return (dispatch) => {
     return axios({
@@ -144,6 +160,7 @@ export const deleteComment = (postId, commentId) => {
   };
 };
 
+//Action qui permet de récupérer les données des tendances triées et de les envoyer au reducer
 export const getTrends = (sortedArray) => {
   return (dispatch) => {
     dispatch({ type: GET_TRENDS, payload: sortedArray });

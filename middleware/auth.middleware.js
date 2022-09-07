@@ -7,8 +7,8 @@ const jwt = require("jsonwebtoken");
 //Importation du model utilisateur
 const UserModel = require("../models/user.model");
 
-
- // Récupère le token de l'utilisateur, vérifie si il existe et le décode
+//Exportation de la fonction checkUser
+// Récupère le token de l'utilisateur, vérifie si il existe et le décode
 module.exports.checkUser = (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
@@ -29,6 +29,7 @@ module.exports.checkUser = (req, res, next) => {
   }
 };
 
+//Exportation de la fonction requireAuth
 module.exports.requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {

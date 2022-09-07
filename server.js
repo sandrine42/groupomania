@@ -31,7 +31,7 @@ const helmet = require('helmet');
 // Importation du middleware d'authentification des utilisateurs
 const {checkUser, requireAuth} = require('./middleware/auth.middleware');
 
-//Importatio du middleware erreurs CORS ( Cross Origin Resource Sharing)
+//Importation du middleware erreurs CORS ( Cross Origin Resource Sharing)
 const cors = require('cors');
 
 //Importation de l'application sur le serveur
@@ -44,7 +44,7 @@ const corsOptions = {
   'allowedHeaders': ['sessionId', 'Content-Type'],
   'exposedHeaders': ['sessionId'],
   'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  'preflightContinue': false
+  'preflightContinue': false,
 }
 // Activation du middleware Cors
 app.use(cors(corsOptions));

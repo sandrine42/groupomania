@@ -1,8 +1,25 @@
+//Update du profil utilisateur
+
+//Imports
+
+//Importation de React (bibliothèque de construction d'interfaces utilisateur)
 import React, { useState } from "react";
+
+//Importation de useSelector pour récupérer une valeur du store Redux.
+//Importation de useDispatch pour récupérer la fonction dispatch au sein de notre composant
+//afin de pouvoir dispatch des actions Redux.
 import { useDispatch, useSelector } from "react-redux";
+
+//Importation de UploadImg
 import UploadImg from "./UploadImg";
+
+//Importation de updateBio (action)
 import { updateBio } from "../../actions/user.actions";
+
+//Importation de dateParser (date d'inscription de l'utilisateur)
 import { dateParser } from "../Utils";
+
+//Importation de FollowHandler
 import FollowHandler from "./FollowHandler";
 
 const UpdateProfil = () => {
@@ -122,4 +139,5 @@ const UpdateProfil = () => {
   );
 };
 
+//Exportation de UpdateProfil
 export default UpdateProfil;

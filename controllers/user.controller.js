@@ -1,11 +1,20 @@
+//Importation du model utilisateur
 const UserModel = require("../models/user.model");
+
+//Déclaration de la constante ObjectID de Types.ObjectId (mongoose)
+//Un ObjectId est un type spécial généralement utilisé pour les identifiants uniques.
+//Pour vérifier que le paramètre (Id) passé existe dans la base de données
 const ObjectID = require("mongoose").Types.ObjectId;
 
+//Les utilisateurs
+
+//Exportation de la fonction getAllUsers
 module.exports.getAllUsers = async (req, res) => {
   const users = await UserModel.find().select("-password");
   res.status(200).json(users);
 };
 
+//Exportation de la fonction userInfo
 module.exports.userInfo = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
@@ -16,6 +25,7 @@ module.exports.userInfo = (req, res) => {
   }).select("-password");
 };
 
+//Exportation de la fonction updateUser
 module.exports.updateUser = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
@@ -36,6 +46,7 @@ module.exports.updateUser = async (req, res) => {
   }
 };
 
+//Exportation de la fonction deleteUser
 module.exports.deleteUser = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
@@ -48,6 +59,9 @@ module.exports.deleteUser = async (req, res) => {
   }
 };
 
+//Les followers et followings
+
+//Exportation de la fonction follow
 module.exports.follow = async (req, res) => {
   if (
     !ObjectID.isValid(req.params.id) ||
@@ -68,6 +82,7 @@ try {
 }
 };
 
+//Exportation de la fonction unfollow
 module.exports.unfollow = async (req, res) => {
   if (
     !ObjectID.isValid(req.params.id) ||

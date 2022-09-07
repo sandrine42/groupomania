@@ -1,5 +1,15 @@
+//S'inscrire
+
+//Imports
+
+//Importation de React (bibliothèque de construction d'interfaces utilisateur)
 import React, { useState } from "react";
+
+//Importation de axios
+//Axios est une librairie cliente HTTP qui vous permet de faire des requêtes à une route donnée
 import axios from "axios";
+
+//Importation de SignInForm pour la connection
 import SignInForm from "./SignInForm";
 
 const SignUpForm = () => {
@@ -54,6 +64,7 @@ const SignUpForm = () => {
     }
   };
 
+  //rendu (affichage)
   return (
     <>
       {formSubmit ? (
@@ -126,4 +137,5 @@ const SignUpForm = () => {
   );
 };
 
+//Exportation de SignUpForm
 export default SignUpForm;

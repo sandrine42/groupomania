@@ -1,3 +1,5 @@
+//Formulaire de post pour les nouveaux posts
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { isEmpty, timestampParser } from "../Utils";
@@ -53,8 +55,8 @@ const NewPostForm = () => {
       let findLink = message.split(" ");
       for (let i = 0; i < findLink.length; i++) {
         if (
-          findLink[i].includes("https://www.yout") ||
-          findLink[i].includes("https://yout")
+          findLink[i].includes("https://youtu.be/") ||
+          findLink[i].includes("https://www.youtu.be/")
         ) {
           let embed = findLink[i].replace("watch?v=", "embed/");
           setVideo(embed.split("&")[0]);
@@ -91,6 +93,7 @@ const NewPostForm = () => {
             </div>
           </NavLink>
           <div className="post-form">
+          <label for="message" class="message">Tapez votre texte ci-dessous</label>
             <textarea
               name="message"
               id="message"
@@ -131,6 +134,7 @@ const NewPostForm = () => {
                 {isEmpty(video) && (
                   <>
                     <img src="./img/icons/picture.svg" alt="img" />
+                    <label for="file-upload" class="icon_img">Cliquez sur l'icône pour télécharger une image</label>
                     <input
                       type="file"
                       id="file-upload"

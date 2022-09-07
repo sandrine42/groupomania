@@ -1,10 +1,32 @@
+//Posts cards
+
+//Imports
+
+//Importation de React (bibliothèque de construction d'interfaces utilisateur)
 import React, { useEffect, useState } from "react";
+
+//Importation de useSelector pour récupérer une valeur du store Redux.
+//Importation de useDispatch pour récupérer la fonction dispatch au sein de notre composant
+//afin de pouvoir dispatch des actions Redux.
 import { useDispatch, useSelector } from "react-redux";
+
+//Importation de IsEmpty, fonction pour pour déterminer si une value est vide ou pas
+//Importation de dateParser (traitement de la date d'inscription)
 import { dateParser, isEmpty } from "../Utils";
+
+//Importation de FollowHandler
 import FollowHandler from "../Profil/FollowHandler";
+
+//Importation de LikeButton
 import LikeButton from "./LikeButton";
+
+//Importation de updatePost (action)
 import { updatePost } from "../../actions/post.actions";
+
+//Importation de DeleteCard 
 import DeleteCard from "./DeleteCard";
+
+//Importation de CardComments
 import CardComments from "./CardComments";
 
 const Card = ({ post }) => {
@@ -16,6 +38,7 @@ const Card = ({ post }) => {
   const userData = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
 
+  //Update du post
   const updateItem = () => {
     if (textUpdate) {
       dispatch(updatePost(post._id, textUpdate));
@@ -24,9 +47,12 @@ const Card = ({ post }) => {
   };
 
   useEffect(() => {
+    //Si on a les données utilisateur, setIsloading est sur false donc n'apparait pas
     !isEmpty(usersData[0]) && setIsLoading(false);
   }, [usersData]);
 
+  //Rendu (affichage)
+  //isLoading true ? : sinon isLoading false est on affiche le rendu qui suit
   return (
     <div className="card-container" key={post._id}>
       {isLoading ? (
@@ -124,4 +150,5 @@ const Card = ({ post }) => {
   );
 };
 
+//Exportation de Card
 export default Card;

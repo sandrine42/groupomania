@@ -1,3 +1,4 @@
+//Importation de toutes les actions concernant l'utilisateur
 import {
   FOLLOW_USER,
   GET_USER,
@@ -6,8 +7,13 @@ import {
   UPLOAD_PICTURE,
 } from "../actions/user.actions";
 
+//State de base vide
 const initialState = {};
 
+//Exportation de la fonction usersReducer qui incrément le initialState avec toutes les données de l'utilisateur
+//qui seront accessibles par tous les components de l'appli
+//...state permet de récupérer les données déjà existantes (ce qui permet de ne pas écraser
+//les données quand on en renvoie mais de "compléter"
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case GET_USER:

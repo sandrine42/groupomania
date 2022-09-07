@@ -1,7 +1,6 @@
 //Importation de MONGOOSE
 const mongoose = require('mongoose');
 
-
 //Création d'un schéma de données pour la base de données MongoDB
 //qui contient les champs souhaités pour le model post
 //indique leur type ainsi que leur caractère (obligatoire ou non)
